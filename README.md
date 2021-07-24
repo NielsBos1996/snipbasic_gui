@@ -4,7 +4,7 @@
 - `npm install`
 
 ### Run local:
-- `npm start`
+- `npm run build && npm start`
 
 ### Create binary:
 - `npm run build`
