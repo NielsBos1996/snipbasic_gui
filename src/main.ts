@@ -1,7 +1,7 @@
 //npm install electron --save-dev
 import {app, BrowserWindow} from "electron";
 import * as path from "path";
-import axios from "axios";
+import {postRequest} from "./helpers"
 
 function createWindow() {
   // Create the browser window.
@@ -18,23 +18,15 @@ function createWindow() {
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();
-
-
-  axios({
-    method: 'post',
-    url: 'https://snipbasic.com/accountapi?action=login',
-    headers: {
-      'content-type': 'application/x-www-form-urlencoded',
-    },
-    data: "username=test&password=test"
-  }).then(res => {
-    console.log("SUCCES=================================")
-    console.log(res.data)
-  }).catch(error => {
-    console.log("ERROR=================================")
-    console.log(error.response.data)
+  const r = postRequest(
+    'https://snipbasic.com/accountapi?action=login',
+    {"username": "test", "password": "test"}
+  );
+  r.then(r => {
+    console.log(r)
+  }).catch(r => {
+    console.log(r)
   })
-
 }
 
 // This method will be called when Electron has finished
